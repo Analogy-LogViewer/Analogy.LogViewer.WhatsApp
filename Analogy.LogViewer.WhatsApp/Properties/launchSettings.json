@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Analogy.LogViewer.PlainTextParser": {
+      "commandName": "Executable",
+      "executablePath": "E:\\files\\Programming\\Analogy.LogViewer.PlainTextParser\\Analogy.LogViewer.PlainTextParser\\bin\\Debug\\net472\\Analogy.exe",
+      "workingDirectory": "E:\\files\\Programming\\Analogy.LogViewer.PlainTextParser\\Analogy.LogViewer.PlainTextParser\\bin\\Debug\\net472\\"
+    }
+  }
+}
