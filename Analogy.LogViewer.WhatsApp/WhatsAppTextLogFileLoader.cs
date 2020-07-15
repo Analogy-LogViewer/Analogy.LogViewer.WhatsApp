@@ -59,8 +59,11 @@ namespace Analogy.LogViewer.WhatsApp
                     AnalogyLogMessage m = new AnalogyEventMessage(mi.Text);
                     m.Date = mi.TimeStamp;
                     m.User = mi.MessageBy ?? "";
+                    m.Source = m.User;
                     messages.Add(m);
+
                 }
+                messagesHandler.AppendMessages(messages,fileName);
                 return messages;
 
             }
@@ -97,7 +100,6 @@ namespace Analogy.LogViewer.WhatsApp
         {
             string file = Path.GetFileName(fileName);
             return fileName.Equals(file) ? fileName : $"{file} ({fileName})";
-
         }
     }
 }

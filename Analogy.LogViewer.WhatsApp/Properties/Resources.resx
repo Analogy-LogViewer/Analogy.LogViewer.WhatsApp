@@ -217,4 +217,10 @@
   <data name="Stop_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stop_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="whatsappicon16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whatsappicon16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="whatsappicon32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\whatsappicon32x32.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
