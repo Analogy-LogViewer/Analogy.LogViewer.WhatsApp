@@ -35,34 +35,34 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
         }
     }
 
-    public class AnalogyCustomActionFactory : IAnalogyCustomActionsFactory
-    {
-        public Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+    //public class AnalogyCustomActionFactory : IAnalogyCustomActionsFactory
+    //{
+    //    public Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
 
-        public string Title { get; } = "Analogy WhatsApp Text tools";
-        public IEnumerable<IAnalogyCustomAction> Actions { get; }
+    //    public string Title { get; } = "Analogy WhatsApp Text tools";
+    //    public IEnumerable<IAnalogyCustomAction> Actions { get; }
 
-        public AnalogyCustomActionFactory()
-        {
-            Actions = new List<IAnalogyCustomAction>(0);
-        }
-    }
+    //    public AnalogyCustomActionFactory()
+    //    {
+    //        Actions = new List<IAnalogyCustomAction>(0);
+    //    }
+    //}
 
-    public class AnalogyPlainTextParserSettings : IAnalogyDataProviderSettings
-    {
-        public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
-        public Guid ID { get; set; } = new Guid("110D2B6C-82C4-4475-AA7D-B57FB821FFE5");
+    //public class AnalogyPlainTextParserSettings : IAnalogyDataProviderSettings
+    //{
+    //    public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+    //    public Guid ID { get; set; } = new Guid("110D2B6C-82C4-4475-AA7D-B57FB821FFE5");
 
-        public string Title { get; } = "WhatsApp Parser Settings";
-        public UserControl DataProviderSettings { get; } = new PlainTextSettingSettings();
-        public Image SmallImage { get; } = Resources.Analogy_small_16x16;
-        public Image LargeImage { get; } = null;
+    //    public string Title { get; } = "WhatsApp Parser Settings";
+    //    public UserControl DataProviderSettings { get; } = new PlainTextSettingSettings();
+    //    public Image SmallImage { get; } = Resources.Analogy_small_16x16;
+    //    public Image LargeImage { get; } = null;
 
-        public Task SaveSettingsAsync()
-        {
-            UserSettingsManager.UserSettings.Save();
-            return Task.CompletedTask;
-        }
+    //    public Task SaveSettingsAsync()
+    //    {
+    //        UserSettingsManager.UserSettings.Save();
+    //        return Task.CompletedTask;
+    //    }
 
-    }
+    //}
 }

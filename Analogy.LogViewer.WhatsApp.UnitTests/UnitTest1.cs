@@ -16,7 +16,7 @@ namespace Analogy.LogViewer.WhatsApp.UnitTests
             CancellationTokenSource cts = new CancellationTokenSource();
             MessageHandlerForTesting forTesting = new MessageHandlerForTesting();
             var messages = await parser.Process(fileName, cts.Token, forTesting);
-            Assert.IsTrue(messages.Count() == 2);
+            Assert.IsTrue(messages.Count() == 13);
         }
     }
 }

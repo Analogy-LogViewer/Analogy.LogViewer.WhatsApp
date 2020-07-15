@@ -38,7 +38,6 @@
             this.txtNLogExtension = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
-            this.analogyColumnsMatcherUC1 = new AnalogyColumnsMatcherUC();
             this.txtbNLogDirectory = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnOpenFolder = new System.Windows.Forms.Button();
@@ -144,17 +143,6 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // analogyColumnsMatcherUC1
-            // 
-            this.analogyColumnsMatcherUC1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.analogyColumnsMatcherUC1.Font = new System.Drawing.Font("Tahoma", 7.8F);
-            this.analogyColumnsMatcherUC1.Location = new System.Drawing.Point(0, 120);
-            this.analogyColumnsMatcherUC1.Name = "analogyColumnsMatcherUC1";
-            this.analogyColumnsMatcherUC1.Size = new System.Drawing.Size(709, 346);
-            this.analogyColumnsMatcherUC1.TabIndex = 0;
-            // 
             // txtbNLogDirectory
             // 
             this.txtbNLogDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -201,7 +189,6 @@
             this.Controls.Add(this.lblLayout);
             this.Controls.Add(this.btnExportSettings);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.analogyColumnsMatcherUC1);
             this.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PlainTextSettingSettings";
             this.Size = new System.Drawing.Size(709, 506);
@@ -213,7 +200,6 @@
 
         #endregion
 
-        private AnalogyColumnsMatcherUC analogyColumnsMatcherUC1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExportSettings;
         private System.Windows.Forms.Label lblLayout;

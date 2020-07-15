@@ -25,7 +25,7 @@ namespace Analogy.LogViewer.WhatsApp
         private void SaveMapping()
         {
             LogParsersSettings.Configure(txtNLogLayout.Text, txtNLogSeperator.Text,
-                new List<string> { txtNLogExtension.Text }, analogyColumnsMatcherUC1.Mapping);
+                new List<string> { txtNLogExtension.Text }, new Dictionary<int, AnalogyLogMessagePropertyName>());
             LogParsersSettings.Directory = txtbNLogDirectory.Text;
         }
 
@@ -67,7 +67,6 @@ namespace Analogy.LogViewer.WhatsApp
                 var items = txtNLogLayout.Text
                     .Split(txtNLogSeperator.Text.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
                     .ToArray();
-                analogyColumnsMatcherUC1.SetColumns(items);
             }
             catch (Exception exception)
             {
@@ -108,7 +107,6 @@ namespace Analogy.LogViewer.WhatsApp
                 txtNLogLayout.Text = nLogParserSettings.Layout;
                 txtNLogExtension.Text = string.Join(";", nLogParserSettings.SupportedFilesExtensions);
 
-                analogyColumnsMatcherUC1.LoadMapping(nLogParserSettings);
                 CheckNLogLayout();
             }
         }

@@ -54,12 +54,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AnalogyColumnsMatcherUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="AnalogyColumnsMatcherUC.Designer.cs">
-      <DependentUpon>AnalogyColumnsMatcherUC.cs</DependentUpon>
-    </Compile>
     <Compile Update="NLogSettings.Designer.cs">
       <DependentUpon>PlainTextSettingSettings.cs</DependentUpon>
     </Compile>
@@ -74,9 +68,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AnalogyColumnsMatcherUC.resx">
-      <DependentUpon>AnalogyColumnsMatcherUC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Update="NLogSettings.resx">
       <DependentUpon>PlainTextSettingSettings.cs</DependentUpon>
     </EmbeddedResource>
