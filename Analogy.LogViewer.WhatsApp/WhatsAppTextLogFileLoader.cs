@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace Analogy.LogViewer.WhatsApp
         //private GeneralFileParser _parser;
         public WhatsAppTextLogFileLoader()
         {
-            
+
         }
         public WhatsAppTextLogFileLoader(ILogParserSettings logFileSettings)
         {
@@ -36,60 +38,31 @@ namespace Analogy.LogViewer.WhatsApp
                     Module = System.Diagnostics.Process.GetCurrentProcess().ProcessName
                 };
                 messagesHandler.AppendMessage(empty, GetFileNameAsDataSource(fileName));
-                return new List<AnalogyLogMessage> {empty};
+                return new List<AnalogyLogMessage> { empty };
             }
 
             List<AnalogyLogMessage> messages = new List<AnalogyLogMessage>();
             try
             {
-                using (var stream = File.OpenRead(fileName))
+                var messagesInternal = new List<Message>();
+
+                var chatLog = File.ReadAllLines(fileName);
+                foreach (var chatLine in chatLog)
                 {
-                    using (var reader = new StreamReader(stream))
-                    {
-                        string firstLine = string.Empty;
-                        string otherdata = string.Empty;
-                        while (!reader.EndOfStream)
-                        {
-                            if (string.IsNullOrEmpty(firstLine))
-                                firstLine = await reader.ReadLineAsync();
-                            if (reader.EndOfStream)
-                            {
-
-                                var m = Parse(firstLine);
-                                messages.Add(m);
-                                messagesHandler.AppendMessage(m, GetFileNameAsDataSource(fileName));
-                                continue;
-                            }
-
-                            var line = await reader.ReadLineAsync();
-
-                            if (line.Contains(" - "))
-                            {
-                                string lineToProcess = string.IsNullOrEmpty(firstLine)
-                                    ? otherdata
-                                    : firstLine + Environment.NewLine + otherdata;
-                                var m = Parse(lineToProcess);
-                                messages.Add(m);
-                                messagesHandler.AppendMessage(m, GetFileNameAsDataSource(fileName));
-                                firstLine = line;
-                                otherdata = string.Empty;
-                            }
-                            else
-                            {
-                                otherdata += line + Environment.NewLine;
-                            }
-                        }
-
-                        if (!string.IsNullOrEmpty(firstLine))
-                        {
-                            var m = Parse(firstLine);
-                            messages.Add(m);
-                            messagesHandler.AppendMessage(m, GetFileNameAsDataSource(fileName));
-                        }
-                    }
+                    var messageInternal = GetMessage(messagesInternal, chatLine, CultureInfo.CurrentCulture);
+                    if (messageInternal != null)
+                        messagesInternal.Add(messageInternal);
                 }
 
+                foreach (var mi in messagesInternal)
+                {
+                    AnalogyLogMessage m = new AnalogyEventMessage(mi.Text);
+                    m.Date = mi.TimeStamp;
+                    m.User = mi.MessageBy ?? "";
+                    messages.Add(m);
+                }
                 return messages;
+
             }
             catch (Exception e)
             {
@@ -101,48 +74,24 @@ namespace Analogy.LogViewer.WhatsApp
                     Module = System.Diagnostics.Process.GetCurrentProcess().ProcessName
                 };
                 messagesHandler.AppendMessage(empty, GetFileNameAsDataSource(fileName));
-                return new List<AnalogyLogMessage> {empty};
+                return new List<AnalogyLogMessage> { empty };
             }
 
 
         }
 
-        private AnalogyLogMessage Parse(string line)
+        private static Message GetMessage(List<Message> messages, string chatLine, CultureInfo culture)
         {
-            int first = line.IndexOf(" - ", StringComparison.InvariantCultureIgnoreCase);
-            AnalogyLogMessage m = new AnalogyLogMessage();
-            m.Source = source;
-            m.Module = source;
-            string datetime = line.Substring(0, first);
-            if (DateTime.TryParse(datetime, out DateTime dateVal))
+            var message = Message.Parse(chatLine, culture);
+            if (message.TimeStamp == default && message.MessageBy == null)
             {
-                m.Date = dateVal;
+                var lastMessage = messages.Last();
+                lastMessage.Text += Environment.NewLine + message.Text;
+                return null;
             }
 
-            string sub = line.Substring(first + 1);
-            int firstSpace = sub.IndexOf(':');
-            string level = sub.Substring(0, firstSpace);
-            if (level.StartsWith("Info"))
-            {
-                m.Level = AnalogyLogLevel.Event;
-            }
-            else if (level.StartsWith("Debug"))
-            {
-                m.Level = AnalogyLogLevel.Debug;
-            }
-            else if (level.StartsWith("Warning"))
-            {
-                m.Level = AnalogyLogLevel.Warning;
-            }
-
-            sub = sub.Substring(level.Length);
-            //int sourceIndex = sub.IndexOf(']') + 2;
-            //m.Source = sub.Substring(2, sourceIndex);
-            m.Source = source;
-            m.Text = sub; //.Substring(sourceIndex);
-            return m;
+            return message;
         }
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetFileNameAsDataSource(string fileName)
         {
