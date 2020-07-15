@@ -20,3 +20,5 @@
 </p>
 
 WhatsApp Exported chats Parser
+Export your chat and load it in this data provider
+Initial parser based on [this repo](https://github.com/spoon611/WhatsAppChatParser).
