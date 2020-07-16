@@ -2,7 +2,7 @@
 
 <p align="center">
 
-[![Gitter](https://badges.gitter.im/Analogy-LogViewer/community.svg)](https://gitter.im/Analogy-LogViewer/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)  [![Build Status](https://dev.azure.com/Analogy-LogViewer/Analogy%20Log%20Viewer/_apis/build/status/Analogy-LogViewer.Analogy.LogViewer.GenericProvider?branchName=master)](https://dev.azure.com/Analogy-LogViewer/Analogy%20Log%20Viewer/_build/latest?definitionId=29&branchName=master)
+[![Gitter](https://badges.gitter.im/Analogy-LogViewer/community.svg)](https://gitter.im/Analogy-LogViewer/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://dev.azure.com/Analogy-LogViewer/Analogy%20Log%20Viewer/_apis/build/status/Analogy-LogViewer.Analogy.LogViewer.WhatsApp?branchName=master)](https://dev.azure.com/Analogy-LogViewer/Analogy%20Log%20Viewer/_build/latest?definitionId=31&branchName=master)
  <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp/issues">
     <img src="https://img.shields.io/github/issues/Analogy-LogViewer/Analogy.LogViewer.WhatsApp" img alt="Issues"/>
 </a>
@@ -20,5 +20,9 @@
 </p>
 
 WhatsApp Exported chats Parser
-Export your chat and load it in this data provider
+Export your chat and load it in this data provider.
+
 Initial parser based on [this repo](https://github.com/spoon611/WhatsAppChatParser).
+
+screenshot:
+![Main screen](Assets/screenshot.jpg)
