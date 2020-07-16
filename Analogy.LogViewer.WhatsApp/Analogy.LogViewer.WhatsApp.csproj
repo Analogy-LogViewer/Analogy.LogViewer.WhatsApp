@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net472;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net471;net472;netcoreapp3.1</TargetFrameworks>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Analogy.DataProviders.Extensions" Version="1.1.6" />
+    <PackageReference Include="Analogy.DataProviders.Extensions" Version="1.1.7" />
     <PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.3.1" />
     <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -57,9 +57,7 @@
     <Compile Update="NLogSettings.Designer.cs">
       <DependentUpon>PlainTextSettingSettings.cs</DependentUpon>
     </Compile>
-    <Compile Update="PlainTextSettingSettings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="PlainTextSettingSettings.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
