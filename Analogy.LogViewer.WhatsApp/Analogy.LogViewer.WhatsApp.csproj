@@ -25,6 +25,7 @@
     <Description>WhatsApp text parser for Analogy Log Viewer</Description>
     <PackageReleaseNotes>Align with changes in interface API</PackageReleaseNotes>
     <Company>Analogy.LogViewer</Company>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,6 +52,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Resources.Extensions" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
