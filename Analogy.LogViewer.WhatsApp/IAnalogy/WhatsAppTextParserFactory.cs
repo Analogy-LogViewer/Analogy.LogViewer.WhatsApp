@@ -16,22 +16,22 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
     {
         internal static Guid AnalogyWhatsAppGuid { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
         public Guid FactoryId { get; } = AnalogyWhatsAppGuid;
-        public string Title { get; } = "Analogy WhatsApp Text Parser";
+        public string Title { get; } = "WhatsApp Text Parser";
         public IEnumerable<IAnalogyChangeLog> ChangeLog => WhatsApp.ChangeLog.GetChangeLog();
         public IEnumerable<string> Contributors { get; } = new List<string> { "Lior Banai" };
-        public string About { get; } = "Analogy WhatsApp Text Parser";
+        public string About { get; } = "WhatsApp Text Parser";
 
     }
 
     public class AnalogyPlainTextDataProviderFactory : IAnalogyDataProvidersFactory
     {
         public virtual Guid FactoryId { get; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
-        public virtual string Title { get; } = "Analogy WhatsApp Text Provider";
+        public virtual string Title { get; } = "WhatsApp Text Provider";
         public IEnumerable<IAnalogyDataProvider> DataProviders { get; }
 
         public AnalogyPlainTextDataProviderFactory()
         {
-            DataProviders = new List<IAnalogyDataProvider> { new WhatsAppDataProvider(UserSettingsManager.UserSettings.LogParserSettings) };
+            DataProviders = new List<IAnalogyDataProvider> { new WhatsAppDataProvider() };
         }
     }
 

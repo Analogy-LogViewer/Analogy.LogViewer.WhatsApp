@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Analogy.Interfaces;
 using Analogy.Interfaces.DataTypes;
+using Analogy.LogViewer.WhatsApp.Properties;
 using Newtonsoft.Json;
 
 namespace Analogy.LogViewer.WhatsApp.Managers
@@ -13,49 +15,45 @@ namespace Analogy.LogViewer.WhatsApp.Managers
         private static readonly Lazy<UserSettingsManager> _instance =
             new Lazy<UserSettingsManager>(() => new UserSettingsManager());
         public static UserSettingsManager UserSettings { get; set; } = _instance.Value;
-        private string WhatsAppFileSetting { get; } = "AnalogyWhatsAppParserTextSettings.json";
-        public ILogParserSettings LogParserSettings { get; set; }
-
+        public CultureInfo CultureInfo { get; set; }
 
         public UserSettingsManager()
         {
-            if (File.Exists(WhatsAppFileSetting))
+            if (Settings.Default.UpgradeRequired)
             {
-                try
-                {
-                    string data = File.ReadAllText(WhatsAppFileSetting);
-                    LogParserSettings = JsonConvert.DeserializeObject<LogParserSettings>(data);
-                }
-                catch (Exception ex)
-                {
-                    LogManager.Instance.LogException(ex, "WhatsApp Text Provider", "Error loading user setting file");
-                    LogParserSettings = new LogParserSettings();
-                    LogParserSettings.Splitter = "|";
-                    LogParserSettings.SupportedFilesExtensions = new List<string> { "*.txt" };
-                }
-            }
-            else
-            {
-                LogParserSettings = new LogParserSettings();
-                LogParserSettings.Splitter = "|";
-                LogParserSettings.SupportedFilesExtensions = new List<string> { "*.txt" };
-
+                Settings.Default.Upgrade();
+                Settings.Default.UpgradeRequired = false;
+                Settings.Default.Save();
             }
 
+            CultureInfo = string.IsNullOrEmpty(Settings.Default.CultureInfo)
+                ? CultureInfo.CurrentCulture
+                : new CultureInfo(Settings.Default.CultureInfo);
         }
 
         public void Save()
         {
+            Settings.Default.CultureInfo = CultureInfo.Name;
+            Settings.Default.Save();
+
+
+        }
+        private T ParseSettings<T>(string data) where T : new()
+        {
             try
             {
-                File.WriteAllText(WhatsAppFileSetting, JsonConvert.SerializeObject(LogParserSettings));
+                return string.IsNullOrEmpty(data) ?
+                    new T() :
+                    JsonConvert.DeserializeObject<T>(data);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                LogManager.Instance.LogError("Error during parsing: " + e, nameof(UserSettingsManager));
+                return new T();
             }
 
 
         }
+
     }
 }

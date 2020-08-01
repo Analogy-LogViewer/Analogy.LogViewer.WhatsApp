@@ -12,7 +12,6 @@ namespace Analogy.LogViewer.WhatsApp
 {
     public partial class PlainTextSettingSettings : UserControl
     {
-        private ILogParserSettings LogParsersSettings => UserSettingsManager.UserSettings.LogParserSettings;
         public PlainTextSettingSettings()
         {
             InitializeComponent();
@@ -24,56 +23,38 @@ namespace Analogy.LogViewer.WhatsApp
         }
         private void SaveMapping()
         {
-            LogParsersSettings.Configure(txtNLogLayout.Text, txtNLogSeperator.Text,
-                new List<string> { txtNLogExtension.Text }, new Dictionary<int, AnalogyLogMessagePropertyName>());
-            LogParsersSettings.Directory = txtbNLogDirectory.Text;
+
         }
 
         private void btnExportSettings_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Analogy Plain Text Settings (*.AnalogyPlainTextSettings)|*.AnalogyPlainTextSettings";
-            saveFileDialog.Title = @"Export NLog settings";
+            //    SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //    saveFileDialog.Filter = "Analogy Plain Text Settings (*.AnalogyPlainTextSettings)|*.AnalogyPlainTextSettings";
+            //    saveFileDialog.Title = @"Export NLog settings";
 
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                SaveMapping();
-                try
-                {
-                    File.WriteAllText(saveFileDialog.FileName, JsonConvert.SerializeObject(LogParsersSettings));
-                    MessageBox.Show("File Saved", @"Export settings", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+            //    if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            //    {
+            //        SaveMapping();
+            //        try
+            //        {
+            //            File.WriteAllText(saveFileDialog.FileName, JsonConvert.SerializeObject(LogParsersSettings));
+            //            MessageBox.Show("File Saved", @"Export settings", MessageBoxButtons.OK,
+            //                MessageBoxIcon.Information);
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error Export: " + ex.Message, @"Error Saving file", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("Error Export: " + ex.Message, @"Error Saving file", MessageBoxButtons.OK,
+            //                MessageBoxIcon.Error);
+            //        }
 
-            }
+            //    }
         }
 
         private void btnLoadLayout_Click(object sender, EventArgs e)
         {
-            CheckNLogLayout();
         }
 
-        private void CheckNLogLayout()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(txtNLogSeperator.Text)) return;
-                var items = txtNLogLayout.Text
-                    .Split(txtNLogSeperator.Text.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
-                    .ToArray();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show("Error parsing input: " + exception.Message, "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
 
         private void btnImport_Click(object sender, EventArgs e)
         {
@@ -87,7 +68,6 @@ namespace Analogy.LogViewer.WhatsApp
                 {
                     var json = File.ReadAllText(openFileDialog1.FileName);
                     LogParserSettings nlog = JsonConvert.DeserializeObject<LogParserSettings>(json);
-                    LoadNLogSettings(nlog);
                     MessageBox.Show("File Imported. Save settings if desired", @"Import settings", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
@@ -97,17 +77,6 @@ namespace Analogy.LogViewer.WhatsApp
                     MessageBox.Show("Error Import: " + ex.Message, @"Error Import file", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-            }
-        }
-        private void LoadNLogSettings(ILogParserSettings nLogParserSettings)
-        {
-            if (nLogParserSettings.IsConfigured)
-            {
-                txtNLogSeperator.Text = nLogParserSettings.Splitter;
-                txtNLogLayout.Text = nLogParserSettings.Layout;
-                txtNLogExtension.Text = string.Join(";", nLogParserSettings.SupportedFilesExtensions);
-
-                CheckNLogLayout();
             }
         }
 
@@ -127,7 +96,6 @@ namespace Analogy.LogViewer.WhatsApp
 
         private void NLogSettings_Load(object sender, EventArgs e)
         {
-            LoadNLogSettings(UserSettingsManager.UserSettings.LogParserSettings);
         }
     }
 }

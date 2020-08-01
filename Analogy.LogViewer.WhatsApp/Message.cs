@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Analogy.LogViewer.WhatsApp.Managers;
 
 namespace Analogy.LogViewer.WhatsApp
 {
@@ -26,9 +27,10 @@ namespace Analogy.LogViewer.WhatsApp
         internal static Message Parse(string chatLine, CultureInfo culture)
         {
             var message = new Message();
-            if(chatLine.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries).Length >= 2)
+            if (chatLine.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries).Length >= 2)
             {
-                var dateTimeString = chatLine.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                var dateTimeString = chatLine.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries)[0]
+                    .Trim();
                 var chatString = chatLine.Replace(dateTimeString, string.Empty).Trim().Trim('-');
 
                 message.TimeStamp = GetMessageTimeStamp(dateTimeString, culture);
@@ -37,6 +39,7 @@ namespace Analogy.LogViewer.WhatsApp
             }
             else
                 message.Text = chatLine.Trim();
+
             return message;
         }
 
@@ -44,7 +47,7 @@ namespace Analogy.LogViewer.WhatsApp
         {
             string messageText = null;
 
-            if(!string.IsNullOrEmpty(chatString))
+            if (!string.IsNullOrEmpty(chatString))
             {
                 if (string.IsNullOrEmpty(messageBy))
                     messageText = chatString;
@@ -59,23 +62,41 @@ namespace Analogy.LogViewer.WhatsApp
         {
             string messageBy = null;
 
-            if(!string.IsNullOrEmpty(chatString) && chatString.Split(':').Length >= 2)
+            if (!string.IsNullOrEmpty(chatString) && chatString.Split(':').Length >= 2)
             {
                 messageBy = chatString.Split(':')[0].Trim();
             }
+
             return messageBy;
         }
 
         private static DateTime GetMessageTimeStamp(string dateTimeString, CultureInfo culture)
         {
-            var timeStamp = default(DateTime);
-
-            if(!string.IsNullOrEmpty(dateTimeString))
+            DateTime timeStamp = default;
+            if (!string.IsNullOrEmpty(dateTimeString))
             {
+
                 if (!DateTime.TryParse(dateTimeString, culture, DateTimeStyles.None, out timeStamp))
                 {
-                    DateTime.TryParse(dateTimeString, CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp);
+                    if (!DateTime.TryParse(dateTimeString, CultureInfo.InvariantCulture, DateTimeStyles.None,
+                        out timeStamp))
+                    {
+
+                        foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.NeutralCultures))
+
+                            if (DateTime.TryParse(dateTimeString, ci, DateTimeStyles.None, out timeStamp))
+                            {
+                                UserSettingsManager.UserSettings.CultureInfo = ci;
+                                return timeStamp;
+                            }
+                    }
+                    else
+                    {
+                        return timeStamp;
+                    }
                 }
+
+                return timeStamp;
             }
 
             return timeStamp;

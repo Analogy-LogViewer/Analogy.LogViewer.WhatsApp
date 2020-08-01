@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Analogy.DataProviders.Extensions;
 using Analogy.Interfaces;
+using Analogy.LogViewer.WhatsApp.Managers;
 
 namespace Analogy.LogViewer.WhatsApp
 {
@@ -19,11 +20,6 @@ namespace Analogy.LogViewer.WhatsApp
         public WhatsAppTextLogFileLoader()
         {
 
-        }
-        public WhatsAppTextLogFileLoader(ILogParserSettings logFileSettings)
-        {
-            //_logFileSettings = logFileSettings;
-            //_parser = new GeneralFileParser(_logFileSettings);
         }
 
         public async Task<IEnumerable<AnalogyLogMessage>> Process(string fileName, CancellationToken token,
@@ -49,7 +45,7 @@ namespace Analogy.LogViewer.WhatsApp
                 var chatLog = File.ReadAllLines(fileName);
                 foreach (var chatLine in chatLog)
                 {
-                    var messageInternal = GetMessage(messagesInternal, chatLine, CultureInfo.CurrentCulture);
+                    var messageInternal = GetMessage(messagesInternal, chatLine, UserSettingsManager.UserSettings.CultureInfo);
                     if (messageInternal != null)
                         messagesInternal.Add(messageInternal);
                 }
@@ -63,7 +59,7 @@ namespace Analogy.LogViewer.WhatsApp
                     messages.Add(m);
 
                 }
-                messagesHandler.AppendMessages(messages,fileName);
+                messagesHandler.AppendMessages(messages, fileName);
                 return messages;
 
             }

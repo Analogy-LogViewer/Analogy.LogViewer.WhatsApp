@@ -12,35 +12,31 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 {
     public class WhatsAppDataProvider : IAnalogyOfflineDataProvider
     {
-        public string OptionalTitle { get; } = "Analogy WhatsApp Text Parser";
+        public string OptionalTitle { get; } = "WhatsApp Text Parser";
         public Guid ID { get; } = new Guid("57CBE5A8-8FBF-4D26-A8A4-F39BBE5CF78F");
         public bool CanSaveToLogFile { get; } = false;
         public string FileOpenDialogFilters { get; } = "WhatsApp Exported Text files|*.txt";
         public string FileSaveDialogFilters { get; } = string.Empty;
         public IEnumerable<string> SupportFormats { get; } = new[] { "*.txt" };
         public bool DisableFilePoolingOption { get; } = false;
-        public string InitialFolderFullPath => Directory.Exists(UserSettings?.Directory)
-            ? UserSettings.Directory
-            : Environment.CurrentDirectory;
+        public string InitialFolderFullPath => Environment.CurrentDirectory;
 
         public WhatsAppTextLogFileLoader WhatsAppTextLogFileParser { get; set; }
 
-        private ILogParserSettings UserSettings { get; set; }
         public bool UseCustomColors { get; set; } = false;
         public IEnumerable<(string originalHeader, string replacementHeader)> GetReplacementHeaders()
             => Array.Empty<(string, string)>();
 
         public (Color backgroundColor, Color foregroundColor) GetColorForMessage(IAnalogyLogMessage logMessage)
             => (Color.Empty, Color.Empty);
-        public WhatsAppDataProvider(ILogParserSettings userSettings)
+        public WhatsAppDataProvider()
         {
-            UserSettings = userSettings;
         }
 
         public Task InitializeDataProviderAsync(IAnalogyLogger logger)
         {
             LogManager.Instance.SetLogger(logger);
-            WhatsAppTextLogFileParser = new WhatsAppTextLogFileLoader(UserSettingsManager.UserSettings.LogParserSettings);
+            WhatsAppTextLogFileParser = new WhatsAppTextLogFileLoader();
             return Task.CompletedTask;
         }
 
@@ -66,16 +62,15 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
             throw new NotSupportedException("Saving is not supported for WhatsApp Text");
         }
 
-        public bool CanOpenFile(string fileName) =>
-            UserSettingsManager.UserSettings.LogParserSettings.CanOpenFile(fileName);
+        public bool CanOpenFile(string fileName) => CanOpenFileInternal(fileName);
 
+        private bool CanOpenFileInternal(string fileName) => fileName.EndsWith(".txt");
         public bool CanOpenAllFiles(IEnumerable<string> fileNames) => fileNames.All(CanOpenFile);
 
         private List<FileInfo> GetSupportedFilesInternal(DirectoryInfo dirInfo, bool recursive)
         {
 
-            List<FileInfo> files = dirInfo.GetFiles("*.txt")
-                .Where(f => UserSettings.CanOpenFile(f.FullName)).ToList();
+            List<FileInfo> files = dirInfo.GetFiles("*.txt").ToList();
             if (!recursive)
                 return files;
             try
