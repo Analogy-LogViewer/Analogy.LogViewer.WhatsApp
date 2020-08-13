@@ -7,6 +7,7 @@
  <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp/issues">
     <img src="https://img.shields.io/github/issues/Analogy-LogViewer/Analogy.LogViewer.WhatsApp" img alt="Issues"/>
 </a>
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Analogy-LogViewer/Analogy.LogViewer.WhatsApp)
 <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/Analogy-LogViewer/Analogy.LogViewer.WhatsApp" img alt="License"/>
 </a>
