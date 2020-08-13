@@ -10,7 +10,6 @@
 <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/Analogy-LogViewer/Analogy.LogViewer.WhatsApp" img alt="License"/>
 </a>
-
  [![Nuget](https://img.shields.io/nuget/v/Analogy.LogViewer.WhatsApp)](https://www.nuget.org/packages/Analogy.LogViewer.WhatsApp/)
 <a href="https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp/releases">
     <img src="https://img.shields.io/github/v/release/Analogy-LogViewer/Analogy.LogViewer.WhatsApp" img alt="Latest Release"/>
