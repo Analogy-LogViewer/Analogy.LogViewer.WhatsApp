@@ -8,19 +8,19 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <AssemblyName>Analogy.LogViewer.WhatsApp</AssemblyName>
     <RootNamespace>Analogy.LogViewer.WhatsApp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Lior Banai © 2020</Copyright>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>AnalogyWhatsApp.png</PackageIcon>
     <PackageIconUrl />
-    <FileVersion>1.0.2.0</FileVersion>
+    <FileVersion>1.0.4.0</FileVersion>
     <Authors>Lior Banai</Authors>
     <Description>WhatsApp text parser for Analogy Log Viewer</Description>
     <PackageReleaseNotes>Align with changes in interface API</PackageReleaseNotes>
@@ -41,8 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-
-    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.3.2.6" />
+    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.4.3" />
     <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
