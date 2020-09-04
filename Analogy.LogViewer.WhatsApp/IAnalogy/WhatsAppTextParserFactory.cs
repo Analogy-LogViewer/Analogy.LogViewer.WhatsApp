@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Analogy.DataProviders.Extensions;
 using Analogy.Interfaces;
 using Analogy.Interfaces.Factories;
 using Analogy.LogViewer.WhatsApp.Managers;
@@ -15,18 +11,18 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
     public class WhatsAppTextParserFactory : IAnalogyFactory
     {
         internal static Guid AnalogyWhatsAppGuid { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
-        public Guid FactoryId { get; } = AnalogyWhatsAppGuid;
-        public string Title { get; } = "WhatsApp Text Parser";
-        public IEnumerable<IAnalogyChangeLog> ChangeLog => WhatsApp.ChangeLog.GetChangeLog();
-        public IEnumerable<string> Contributors { get; } = new List<string> { "Lior Banai" };
-        public string About { get; } = "WhatsApp Text Parser";
+        public Guid FactoryId { get; set; } = AnalogyWhatsAppGuid;
+        public string Title { get; set; } = "WhatsApp Text Parser";
+        public IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = WhatsApp.ChangeLog.GetChangeLog();
+        public IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
+        public string About { get; set; } = "WhatsApp Text Parser";
 
     }
 
     public class AnalogyPlainTextDataProviderFactory : IAnalogyDataProvidersFactory
     {
-        public virtual Guid FactoryId { get; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
-        public virtual string Title { get; } = "WhatsApp Text Provider";
+        public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+        public virtual string Title { get; set; } = "WhatsApp Text Provider";
         public IEnumerable<IAnalogyDataProvider> DataProviders { get; }
 
         public AnalogyPlainTextDataProviderFactory()

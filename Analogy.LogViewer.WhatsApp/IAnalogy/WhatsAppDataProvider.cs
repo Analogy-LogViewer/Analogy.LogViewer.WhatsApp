@@ -12,10 +12,10 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 {
     public class WhatsAppDataProvider : IAnalogyOfflineDataProvider
     {
-        public string OptionalTitle { get; } = "WhatsApp Text Parser";
-        public Guid Id { get; } = new Guid("57CBE5A8-8FBF-4D26-A8A4-F39BBE5CF78F");
-        public Image LargeImage => null;
-        public Image SmallImage => null;
+        public string OptionalTitle { get; set; } = "WhatsApp Text Parser";
+        public Guid Id { get; set; } = new Guid("57CBE5A8-8FBF-4D26-A8A4-F39BBE5CF78F");
+        public Image LargeImage { get; set; } = null;
+        public Image SmallImage { get; set; } = null;
 
         public bool CanSaveToLogFile { get; } = false;
         public string FileOpenDialogFilters { get; } = "WhatsApp Exported Text files|*.txt";
