@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Analogy.Interfaces;
 using Analogy.Interfaces.Factories;
 using Analogy.LogViewer.WhatsApp.Managers;
@@ -13,6 +14,8 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
         internal static Guid AnalogyWhatsAppGuid { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
         public Guid FactoryId { get; set; } = AnalogyWhatsAppGuid;
         public string Title { get; set; } = "WhatsApp Text Parser";
+        public Image SmallImage { get; set; } = Resources.Analogy_small_16x16;
+        public Image LargeImage { get; set; } = Resources.Analogy_small_16x16;
         public IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = WhatsApp.ChangeLog.GetChangeLog();
         public IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
         public string About { get; set; } = "WhatsApp Text Parser";
