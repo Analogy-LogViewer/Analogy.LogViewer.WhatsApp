@@ -51,9 +51,10 @@ namespace Analogy.LogViewer.WhatsApp
 
                 foreach (var mi in messagesInternal)
                 {
-                    AnalogyLogMessage m = new AnalogyEventMessage(mi.Text);
-                    m.Date = mi.TimeStamp;
-                    m.User = mi.MessageBy ?? "";
+                    AnalogyLogMessage m = new AnalogyLogMessage
+                    {
+                        Text = mi.Text, Date = mi.TimeStamp, User = mi.MessageBy ?? ""
+                    };
                     m.Source = m.User;
                     messages.Add(m);
 
