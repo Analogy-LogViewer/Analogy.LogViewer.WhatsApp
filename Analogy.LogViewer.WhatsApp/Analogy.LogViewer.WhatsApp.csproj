@@ -8,19 +8,17 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <AssemblyName>Analogy.LogViewer.WhatsApp</AssemblyName>
     <RootNamespace>Analogy.LogViewer.WhatsApp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Lior Banai © 2020</Copyright>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.WhatsApp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>AnalogyWhatsApp.png</PackageIcon>
     <PackageIconUrl />
-    <FileVersion>1.2.0.0</FileVersion>
     <Authors>Lior Banai</Authors>
     <Description>WhatsApp text parser for Analogy Log Viewer</Description>
     <PackageReleaseNotes>Align with changes in interface API</PackageReleaseNotes>
