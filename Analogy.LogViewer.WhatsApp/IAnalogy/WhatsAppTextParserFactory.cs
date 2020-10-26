@@ -11,8 +11,13 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 
     public class WhatsAppTextParserFactory : IAnalogyFactory
     {
-        internal static Guid AnalogyWhatsAppGuid { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
-        public Guid FactoryId { get; set; } = AnalogyWhatsAppGuid;
+        internal static Guid Id { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
+        public void RegisterNotificationCallback(INotificationReporter notificationReporter)
+        {
+            
+        }
+
+        public Guid FactoryId { get; set; } = Id;
         public string Title { get; set; } = "WhatsApp Text Parser";
         public Image SmallImage { get; set; } = Resources.Analogy_small_16x16;
         public Image LargeImage { get; set; } = Resources.Analogy_small_16x16;
@@ -24,7 +29,7 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 
     public class AnalogyPlainTextDataProviderFactory : IAnalogyDataProvidersFactory
     {
-        public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+        public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.Id;
         public virtual string Title { get; set; } = "WhatsApp Text Provider";
         public IEnumerable<IAnalogyDataProvider> DataProviders { get; }
 
@@ -36,7 +41,7 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 
     //public class AnalogyCustomActionFactory : IAnalogyCustomActionsFactory
     //{
-    //    public Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+    //    public Guid FactoryId { get; set; } = WhatsAppTextParserFactory.Id;
 
     //    public string Title { get; } = "Analogy WhatsApp Text tools";
     //    public IEnumerable<IAnalogyCustomAction> Actions { get; }
@@ -49,7 +54,7 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
 
     //public class AnalogyPlainTextParserSettings : IAnalogyDataProviderSettings
     //{
-    //    public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.AnalogyWhatsAppGuid;
+    //    public virtual Guid FactoryId { get; set; } = WhatsAppTextParserFactory.Id;
     //    public Guid ID { get; set; } = new Guid("110D2B6C-82C4-4475-AA7D-B57FB821FFE5");
 
     //    public string Title { get; } = "WhatsApp Parser Settings";

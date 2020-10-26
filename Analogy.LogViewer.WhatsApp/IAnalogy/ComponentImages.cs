@@ -9,14 +9,14 @@ namespace Analogy.LogViewer.WhatsApp.IAnalogy
     //{
     //    public Image GetLargeImage(Guid analogyComponentId)
     //    {
-    //        if (analogyComponentId == WhatsAppTextParserFactory.AnalogyWhatsAppGuid)
+    //        if (analogyComponentId == WhatsAppTextParserFactory.Id)
     //            return Resources.whatsappicon32x32;
     //        return null;
     //    }
 
     //    public Image GetSmallImage(Guid analogyComponentId)
     //    {
-    //        if (analogyComponentId == WhatsAppTextParserFactory.AnalogyWhatsAppGuid)
+    //        if (analogyComponentId == WhatsAppTextParserFactory.Id)
     //            return Resources.whatsappicon16x16;
     //        return null;
     //    }
