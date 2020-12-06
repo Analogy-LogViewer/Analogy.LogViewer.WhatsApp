@@ -46,7 +46,9 @@ namespace Analogy.LogViewer.WhatsApp
                 {
                     var messageInternal = GetMessage(messagesInternal, chatLine, UserSettingsManager.UserSettings.CultureInfo);
                     if (messageInternal != null)
+                    {
                         messagesInternal.Add(messageInternal);
+                    }
                 }
 
                 foreach (var mi in messagesInternal)

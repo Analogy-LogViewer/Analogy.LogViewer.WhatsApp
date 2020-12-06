@@ -9,21 +9,17 @@ using Analogy.LogViewer.WhatsApp.Properties;
 namespace Analogy.LogViewer.WhatsApp.IAnalogy
 {
 
-    public class WhatsAppTextParserFactory : IAnalogyFactory
+    public class WhatsAppTextParserFactory : Template.PrimaryFactory
     {
         internal static Guid Id { get; } = new Guid("4C062AC5-0349-4A60-A69F-4C0272D05CA7");
-        public void RegisterNotificationCallback(INotificationReporter notificationReporter)
-        {
-            
-        }
 
-        public Guid FactoryId { get; set; } = Id;
-        public string Title { get; set; } = "WhatsApp Text Parser";
-        public Image SmallImage { get; set; } = Resources.Analogy_small_16x16;
-        public Image LargeImage { get; set; } = Resources.Analogy_small_16x16;
-        public IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = WhatsApp.ChangeLog.GetChangeLog();
-        public IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
-        public string About { get; set; } = "WhatsApp Text Parser";
+        public override Guid FactoryId { get; set; } = Id;
+        public override string Title { get; set; } = "WhatsApp Text Parser";
+        public override Image? SmallImage { get; set; } = Resources.Analogy_small_16x16;
+        public override Image? LargeImage { get; set; } = Resources.Analogy_small_16x16;
+        public override IEnumerable<IAnalogyChangeLog> ChangeLog { get; set; } = WhatsApp.ChangeLog.GetChangeLog();
+        public override IEnumerable<string> Contributors { get; set; } = new List<string> { "Lior Banai" };
+        public override string About { get; set; } = "WhatsApp Text Parser";
 
     }
 

@@ -38,7 +38,9 @@ namespace Analogy.LogViewer.WhatsApp
                 message.Text = GetMessageText(chatString, message.MessageBy)?.Trim();
             }
             else
+            {
                 message.Text = chatLine.Trim();
+            }
 
             return message;
         }
@@ -50,9 +52,13 @@ namespace Analogy.LogViewer.WhatsApp
             if (!string.IsNullOrEmpty(chatString))
             {
                 if (string.IsNullOrEmpty(messageBy))
+                {
                     messageText = chatString;
+                }
                 else
+                {
                     messageText = chatString.Replace(messageBy, string.Empty).Trim().Trim(':');
+                }
             }
 
             return messageText;
@@ -84,11 +90,13 @@ namespace Analogy.LogViewer.WhatsApp
 
                         foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.NeutralCultures))
 
+                        {
                             if (DateTime.TryParse(dateTimeString, ci, DateTimeStyles.None, out timeStamp))
                             {
                                 UserSettingsManager.UserSettings.CultureInfo = ci;
                                 return timeStamp;
                             }
+                        }
                     }
                     else
                     {

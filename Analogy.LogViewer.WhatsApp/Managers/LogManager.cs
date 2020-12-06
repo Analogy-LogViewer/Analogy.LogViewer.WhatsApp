@@ -64,7 +64,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                 PendingMessages.Add((AnalogyLogLevel.Information, source, message, memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogInformation(message, source, memberName, lineNumber, filePath);
+            }
         }
 
         public void LogWarning(string message, string source, string memberName = "", int lineNumber = 0,
@@ -75,7 +77,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                 PendingMessages.Add((AnalogyLogLevel.Warning, source, message, memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogWarning(message, source, memberName, lineNumber, filePath);
+            }
         }
 
         public void LogDebug(string message, string source, string memberName = "", int lineNumber = 0,
@@ -86,7 +90,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                 PendingMessages.Add((AnalogyLogLevel.Debug, source, message, memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogDebug(message, source, memberName, lineNumber, filePath);
+            }
         }
 
         public void LogError(string message, string source, string memberName = "", int lineNumber = 0,
@@ -97,7 +103,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                 PendingMessages.Add((AnalogyLogLevel.Error, source, message, memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogError(message, source, memberName, lineNumber, filePath);
+            }
         }
 
         public void LogCritical(string message, string source, string memberName = "", int lineNumber = 0,
@@ -108,7 +116,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                 PendingMessages.Add((AnalogyLogLevel.Critical, source, message, memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogCritical(message, source, memberName, lineNumber, filePath);
+            }
         }
 
         public void LogException(string message, Exception ex, string source, string memberName = "",
@@ -121,7 +131,9 @@ namespace Analogy.LogViewer.WhatsApp.Managers
                     memberName, lineNumber, filePath));
             }
             else
+            {
                 Logger.LogException(message, ex, source, memberName, lineNumber, filePath);
+            }
         }
     }
 }
