@@ -10,7 +10,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
-    <Version>1.5.1</Version>
+    <Version>1.5.2</Version>
     <AssemblyName>Analogy.LogViewer.WhatsApp</AssemblyName>
     <RootNamespace>Analogy.LogViewer.WhatsApp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
