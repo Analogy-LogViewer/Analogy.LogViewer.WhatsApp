@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using Analogy.LogViewer.WhatsApp.Managers;
 
 namespace Analogy.LogViewer.WhatsApp
@@ -51,16 +52,19 @@ namespace Analogy.LogViewer.WhatsApp
                     }
                 }
 
-                foreach (var mi in messagesInternal)
+                for (var i = 0; i < messagesInternal.Count; i++)
                 {
+                    var mi = messagesInternal[i];
                     AnalogyLogMessage m = new AnalogyLogMessage
                     {
                         Text = mi.Text, Date = mi.TimeStamp, User = mi.MessageBy ?? ""
                     };
                     m.Source = m.User;
                     messages.Add(m);
-
+                    messagesHandler.ReportFileReadProgress(
+                        new AnalogyFileReadProgress(AnalogyFileReadProgressType.Percentage, 1, i, messagesInternal.Count));
                 }
+
                 messagesHandler.AppendMessages(messages, fileName);
                 return messages;
 
