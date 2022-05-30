@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Analogy.LogViewer.Interfaces">
-      <Version>3.0.1</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>2.2.10</Version>
